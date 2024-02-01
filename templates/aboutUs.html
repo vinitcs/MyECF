@@ -1,0 +1,436 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyECF | Check</title>
+
+
+    <link rel="shortcut icon" href="{% static 'images/main-logo.png' %}" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+
+    <style>
+        /* CSS Reset  */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* font-family: 'Teko', sans-serif; */
+            font-family: 'Source Code Pro', monospace;
+            /* background-color: #9199a1; */
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            user-select: none;
+
+
+        }
+
+        #backgroundImage {
+            z-index: -4;
+            position: absolute;
+        }
+
+        #backgroundImage #bgimg {
+            width: 100%;
+            height: 67vw;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+        }
+
+        .header {
+            background-color: #2c3e50;
+            height: 4vw;
+        }
+
+        .header .left {
+            /* border: 2px solid red; */
+            position: absolute;
+            left: 2vw;
+            top: 0.3vw;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .header .left div {
+            line-height: 20px;
+            /* margin-top: 30px; */
+            font-size: 20px;
+            font-family: 'Teko', sans-serif;
+
+        }
+
+        .header .left img {
+            width: 7vw;
+            padding: 0vw 1vw;
+            transition: 1.6s;
+
+        }
+
+        .header .left img:hover {
+            transform: scale(1.06);
+
+        }
+
+        .header .mid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 98%;
+            height: 4vw;
+
+        }
+
+        .header .right {
+            position: absolute;
+            right: 7vw;
+            top: 0.6vw;
+            display: list-item;
+            list-style: none;
+            /* border: 2px solid yellow; */
+        }
+
+        .header .navbar {
+            display: inline-block;
+        }
+
+        .header .navbar li {
+            display: inline-block;
+            font-size: 2vw;
+            color: red;
+            transition: 1.6s;
+        }
+
+        .header .navbar li:hover {
+            transform: scale(1.08);
+        }
+
+        .header .navbar li a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            padding: 10px 40px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .header .navbar li a:hover,
+        .header .navbar li a:active {
+            color: rgb(202, 199, 199);
+        }
+
+        .header .right .btn {
+            font-family: 'Teko', sans-serif;
+            margin: 0px 9px;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            color: rgb(2, 2, 2);
+            padding: 2px 14px;
+            border-radius: 25px;
+            font-size: 25px;
+            border: none;
+            float: right;
+            cursor: pointer;
+            transition: 1.6s;
+        }
+
+        .header .right .btn:hover {
+            transform: scale(1.08);
+            background-color: rgb(156, 156, 156);
+        }
+
+
+        .header .right .versionInfo {
+            /* width: 161%; */
+            /* height: 100%; */
+            float: right;
+            z-index: 4;
+            background-color: #414d58;
+            border-radius: 0.8vw;
+            position: absolute;
+            left: -10vw;
+            right: -6vw;
+            top: 3.6vw;
+            padding: 0.4vw;
+            padding-left: 10px;
+            display: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+
+        .header .right:hover>.versionInfo {
+            display: block;
+        }
+
+        .header .right .versionInfo h4,
+        span {
+            font-size: 1vw;
+            color: white;
+
+        }
+
+        .header .right .versionInfo h4 {
+            font-weight: bolder;
+            margin-top: 20px;
+            background-color: #2c3e50;
+            padding-inline-start: 1vw;
+
+
+        }
+
+        .header .right .versionInfo span {
+            line-height: 2px;
+            /* padding-inline-start: 1vw; */
+
+        }
+
+
+
+
+
+
+        .showMainPanel {
+            /* border: 2px solid rgb(12, 12, 12); */
+            color: black;
+            margin: 30px auto;
+            padding-bottom: 400px;
+            width: 95%;
+            border-radius: 4px;
+            height: 30.8vw;
+            align-items: center;
+            background-color: white;
+            opacity: 0.95;
+            justify-content: center;
+        }
+
+        .showMainPanel h1 {
+            font-family: 'Source Code Pro', monospace;
+            position: relative;
+            top: 2vw;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+
+
+
+        .showMainPanel .aboutBorder {
+            border-radius: 4px;
+            width: 20%;
+            height: 70%;
+            position: relative;
+            left: 2vw;
+            top: 6vw;
+            text-align: center;
+            display: inline-table;
+            justify-content: center;
+            margin: 1vw 1.4vw;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition: 1.6s;
+
+        }
+
+        .showMainPanel .aboutBorder:hover {
+            transform: scale(1.06);
+        }
+
+        .showMainPanel .aboutBorder .aboutImage {
+            width: 40%;
+            height: 30%;
+            /* border: 2px solid red; */
+            margin: 1vw auto;
+        }
+
+        .showMainPanel .aboutBorder .aboutImage img {
+            width: 99.9%;
+            /* height: 99.4%; */
+            object-fit: cover;
+
+
+        }
+
+        .showMainPanel .aboutBorder h3 {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.2rem;
+        }
+
+        .showMainPanel .aboutBorder h5 {
+            font-size: 0.6rem;
+        }
+
+        .showMainPanel .aboutBorder p {
+            font-size: 0.8rem;
+            padding: 1vw;
+            word-break: break-all;
+            font-family:'Times New Roman', Times, serif;
+            margin-top: 10px;
+        }
+
+        .vision {
+            position: relative;
+            top: 6vw;
+            margin: 1vw 4vw;
+            padding: 1vw;
+            transform: none;
+
+        }
+
+        .vision h4 {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding-bottom: 0.4vw;
+            transform: none;
+            /* text-decoration: underline; */
+
+
+        }
+
+        .vision p {
+            height: 16vw;
+            font-weight: bold;
+            font-size: 0.8rem;
+            overflow-y: scroll;
+            
+
+        }
+
+
+
+
+
+        #copyright {
+            background-color: #bfdaf5;
+            color: black;
+            /* margin-top: 1rem; */
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            word-spacing: 3px;
+            position: absolute;
+            left: 0px;
+        }
+
+        #copyright strong {
+            color: royalblue;
+            font-weight: bolder;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="backgroundImage">
+        <img id="bgimg" src="{% static '/images/mainbg.jpg' %}" alt="#">
+    </div>
+    <header class="header">
+        <!-- Left box for logo -->
+
+        <div class="left">
+            <img src="{%static 'images/main-logo.png'%}" alt="#">
+        </div>
+
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="home">Home</a></li>
+                <li><a href="#">Useful Links</a></li>
+                <li><a href="#">Review</a></li>
+                <li><a href="aboutUs">About Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn">Version</button>
+            <div class="versionInfo">
+                <h4>Version: 0.0.1</h4>
+                <span>Selecting the college & course is smooth and filters has been added to get your choice college
+                    easily</span>
+                <h4>Software use:</h4>
+                <span>Vs Code</span>
+                <h4>Language use:</h4>
+                <span>Frontend:- Html,Css <br>
+                    Backend:-Python (Django framework) <br>
+                    Database:- Xampp MySQL
+                </span>
+                <h4>Website Updates:</h4>
+                <span>These website get updated every 2 month</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="showMainPanel">
+        <h1>About us</h1>
+
+        <div class="aboutBorder">
+            <div class="aboutImage"><img id="bgimg" src="{% static '/images/aboutDefaultImg.jpg' %}" alt="#"></div>
+            <h3>Ankit Kashte</h3>
+            <h5>Backend</h5>
+            <p>Roll no: 34 <br> Second Year Computer</p>
+        </div>
+        <div class="aboutBorder">
+            <div class="aboutImage"><img id="bgimg" src="{% static '/images/aboutDefaultImg.jpg' %}" alt="#"></div>
+            <h3>Kundan Jadhav</h3>
+            <h5>Backend</h5>
+            <p>Roll no: 23<br> Second Year Computer</p>
+        </div>
+        <div class="aboutBorder">
+            <div class="aboutImage"><img id="bgimg" src="{% static '/images/aboutDefaultImg.jpg' %}" alt="#"></div>
+            <h3>Om Amburle</h3>
+            <h5>Frontend</h5>
+            <p>Roll no: 01 <br> Second Year Computer</p>
+        </div>
+        <div class="aboutBorder">
+            <div class="aboutImage"><img id="bgimg" src="{% static '/images/aboutDefaultImg.jpg' %}" alt="#"></div>
+            <h3>Vinit Chavan</h3>
+            <h5>Frontend</h5>
+            <p>Roll no: 09 <br> Second Year Computer</p>
+        </div>
+
+        <div class="vision">
+            <h4>About our Project</h4>
+            <p>My ECF is a website hosted by our group members to provide online platform for students to choose
+                there future ready college.It provides the colleges list based on the filters Region, Branch, Entrance
+                exam given & marks in entrance exam. <br><br>
+                Our group have faced many difficulties during modeling front end and maintaining respective backend 
+                for website,but by consulting with each other and taking help of online resources we reached towards 
+                the result which is now in front of you. <br><br>
+
+                Lots of efforts and mutual coordination of our group is the success of this website which motivate us
+                for developing new ideas and projects which gives fruitful output for users.The contribution of each 
+                and every member of our group is really appreciated as now because of them only MyECF became one 
+                successful website. <br><br>
+
+                ------- Thank you ---------</p>
+        </div>
+
+    </div>
+
+
+    <div id="copyright">&copy; Copyright 2022 <strong> MyECF.com </strong> Version 0.0.1</div>
+
+
+</body>
+
+
+</html>

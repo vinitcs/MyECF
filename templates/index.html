@@ -1,0 +1,524 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyECF | Home</title>
+
+
+    <link rel="shortcut icon" href="images/main-logo.png" type="image/png"> <!-- Favicon -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+    <style>
+        /* CSS Reset  */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* font-family: 'Teko', sans-serif; */
+            font-family: 'Source Code Pro', monospace;
+            /* background-color: #9199a1; */
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            user-select: none;
+
+
+        }
+
+        #backgroundImage {
+            z-index: -4;
+            position: absolute;
+        }
+
+        #backgroundImage #bgimg {
+            width: 100%;
+            height: 67vw;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+        }
+
+        .header {
+            background-color: #2c3e50;
+            height: 4vw;
+        }
+
+        .header .left {
+            /* border: 2px solid red; */
+            position: absolute;
+            left: 2vw;
+            top: 0.3vw;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .header .left div {
+            line-height: 20px;
+            /* margin-top: 30px; */
+            font-size: 20px;
+            font-family: 'Teko', sans-serif;
+
+        }
+
+        .header .left img {
+            width: 7vw;
+            padding: 0vw 1vw;
+            transition: 1.6s;
+
+        }
+
+        .header .left img:hover {
+            transform: scale(1.06);
+
+        }
+
+        .header .mid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 98%;
+            height: 4vw;
+
+        }
+
+        .header .right {
+            position: absolute;
+            right: 7vw;
+            top: 0.6vw;
+            display: list-item;
+            list-style: none;
+            /* border: 2px solid yellow; */
+        }
+
+        .header .navbar {
+            display: inline-block;
+        }
+
+        .header .navbar li {
+            display: inline-block;
+            font-size: 2vw;
+            color: red;
+            transition: 1.6s;
+        }
+
+        .header .navbar li:hover {
+            transform: scale(1.08);
+        }
+
+        .header .navbar li a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            padding: 10px 40px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .header .navbar li a:hover,
+        .header .navbar li a:active {
+            color: rgb(202, 199, 199);
+        }
+
+        .header .right .btn {
+            font-family: 'Teko', sans-serif;
+            margin: 0px 9px;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            color: rgb(2, 2, 2);
+            padding: 2px 14px;
+            border-radius: 25px;
+            font-size: 25px;
+            border: none;
+            float: right;
+            cursor: pointer;
+            transition: 1.6s;
+        }
+
+        .header .right .btn:hover {
+            transform: scale(1.08);
+            background-color: rgb(156, 156, 156);
+        }
+
+
+        .header .right .versionInfo {
+            /* width: 161%; */
+            /* height: 100%; */
+            float: right;
+            z-index: 4;
+            background-color: #414d58;
+            border-radius: 0.8vw;
+            position: absolute;
+            left: -10vw;
+            right: -6vw;
+            top: 3.6vw;
+            padding: 0.4vw;
+            padding-left: 10px;
+            display: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+
+        .header .right:hover>.versionInfo {
+            display: block;
+        }
+
+        .header .right .versionInfo h4,
+        span {
+            font-size: 1vw;
+            color: white;
+
+        }
+
+        .header .right .versionInfo h4 {
+            font-weight: bolder;
+            margin-top: 20px;
+            background-color: #2c3e50;
+            padding-inline-start: 1vw;
+
+
+        }
+
+        .header .right .versionInfo span {
+            line-height: 2px;
+            /* padding-inline-start: 1vw; */
+
+        }
+
+
+
+
+
+
+        .panel {
+            /* border: 2px solid rgb(12, 12, 12); */
+            color: black;
+            margin: 4vw auto;
+            padding: 2vw 4vw;
+            padding-bottom: 235px;
+            width: 50%;
+            border-radius: 1rem;
+            height: 18vw;
+            align-items: center;
+            background-color: white;
+            opacity: 0.95;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition: 1.6s;
+        }
+
+        .panel .panel-group {
+            /* border: 2px solid black; */
+            display: block;
+            width: 28vw;
+            padding: 0.4rem;
+            margin: 0.5rem auto;
+            border-radius: 60px;
+            text-align: center;
+            font-family: 'Source Code Pro', monospace;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 25px;
+            /* transition: 1.6s; */
+
+        }
+
+        .panel:hover
+
+        /* ,.panel .panel-group:hover */
+            {
+            transform: scale(1.06);
+
+        }
+
+        .panel .panel-group .panel-group option {
+            padding: 2px 3px;
+            font-family: 'Roboto Mono', monospace;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 25px;
+            transform: none;
+        }
+
+        .panel h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 800;
+            font-size: 3rem;
+            margin: 0vw auto;
+            /* transition: 1.6s; */
+
+        }
+
+        .panel h2 {
+            color: black;
+            font-family: 'Source Code Pro', monospace;
+            text-align: center;
+            margin: 2px auto;
+            font-size: 20px;
+            margin-bottom: 2rem;
+            /* transition: 1.6s; */
+        }
+
+        /* .panel h1:hover,
+        .panel h2:hover {
+            transform: scale(1.04);
+        } */
+
+        .panel .panel-button {
+            /* display: grid;
+            grid-template-areas: "panel-btn panel-btn"; */
+            text-align: center;
+            cursor: default;
+            margin-top: 30px;
+
+        }
+
+        .panel .panel-button .panel-btn {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 25px;
+            font-weight: bold;
+            width: 25%;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 60px;
+            border: none;
+            background-color: rgb(212, 212, 212);
+            transition: 1.6s;
+            color: #2c3e50;
+
+        }
+
+        .panel .panel-button .panel-btn:hover {
+            transform: scale(1.08);
+            background-color: rgb(187, 184, 184);
+        }
+
+
+
+        #copyright {
+            background-color: #bfdaf5;
+            color: black;
+            margin-top: 11rem;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            word-spacing: 3px;
+            position: absolute;
+            left: 0px;
+        }
+
+        #copyright strong {
+            color: royalblue;
+            font-weight: bolder;
+        }
+
+
+        /* Responsive code*/
+        /* @media all and (max-width: 480px) {
+            body {
+                overflow-x: hidden;
+
+            } 
+
+            #backgroundImage {
+                display: block;
+            }
+
+            .header {
+                height: 50px;
+                width: auto;
+                display: inline-block;
+            }
+
+            .header .left img {
+                width: 20%;
+            }
+
+            .header .navbar {
+                width: 35%;
+                position: absolute;
+                left: 12px;
+                top: 64px;
+                z-index: 4;
+                background-color: #414d58;
+            }
+
+            .header .mid li {
+                display: flex;
+                top: 2vw;
+            }
+
+            .header .mid li a {
+                font-size: 20px;
+                padding: 8px 4px;
+            }
+
+
+            .header .right .btn {
+                font-size: 20px;
+                padding: 8px 4px;
+            }
+
+
+
+
+
+            .panel {
+                margin-top: 50px;
+                width: 60%;
+                height: 0px;
+                border-radius: 15px;
+            }
+
+            .panel #panelHeading h1 {
+                font-size: 20px;
+            }
+
+            .panel #panelHeading h2 {
+                font-size: 4px;
+                margin-bottom: 4px;
+
+            }
+
+            .panel .panel-group {
+                font-size: 14px;
+                margin: 2px auto;
+                width: 90%;
+            }
+
+            .panel .panel-group .panel-group option {
+                font-size: 15px;
+            }
+
+            .panel .panel-button {
+                margin: 0;
+                width: 100%;
+                font-size: 4px;
+            }
+
+            .panel .button {
+                width: 100%;
+                font-size: 4px;
+            }
+
+            .panel .button .panel-btn {
+                width: 30%;
+                padding: 4px;
+                font-size: 14px;
+            }
+
+            #copyright {
+                margin-top: 10px;
+                padding: 4px;
+                font-size: 2px;
+            }
+
+        } */
+    </style>
+
+</head>
+
+<body>
+    <div id="backgroundImage">
+        <img id="bgimg" src="{% static '/images/mainbg.jpg' %}" alt="#">
+    </div>
+    <header class="header">
+        <!-- Left box for logo -->
+
+        <div class="left">
+            <img src="{%static 'images/main-logo.png'%}" alt="#">
+        </div>
+
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="home">Home</a></li>
+                <li><a href="#">Useful Links</a></li>
+                <li><a href="#">Review</a></li>
+                <li><a href="aboutUs">About Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn">Version</button>
+            <div class="versionInfo">
+                <h4>Version: 0.0.1</h4>
+                <span>Selecting the college & course is smooth and filters has been added to get your choice college
+                    easily</span>
+                <h4>Software use:</h4>
+                <span>Vs Code</span>
+                <h4>Language use:</h4>
+                <span>Frontend:- Html,Css <br>
+                    Backend:-Python (Django framework) <br>
+                    Database:- Xampp MySQL
+                </span>
+                <h4>Website Updates:</h4>
+                <span>These website get updated every 2 month</span>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="panel">
+        <div id="panelHeading">
+            <h1>Welcome To MyECF</h1>
+            <!-- <marquee behavior="left" direction="left" scrollamount="15" style="color: black;">  -->
+            <h2>Let's choose future ready college with MyECF</h2>
+            <!-- </marquee> -->
+        </div>
+
+        <form method="post" action="{% url 'check' %}">{% csrf_token %}
+            <div class="panel-group">
+                <select name="Course" class="panel-group" required autofocus>
+                    <option value="" selected disabled>-- Select Course --</option>
+                    <option value="Computer">Computer Engineering </option>
+                    <option value="Extc">Extc Engineering</option>
+                    <option value="Mechanical">Mechanical Engineering</option>
+                    <option value="Chemical">Chemical Engineering</option>
+                    <option value="Civil">Civil Engineering</option>
+                    <option value="All Course">All Course</option>
+                </select>
+            </div>
+
+            <div class="panel-group">
+                <select name="Region" class="panel-group" required>
+                    <option value="" selected disabled>-- Select Region --</option>
+                    <option value="Ratnagiri">Ratnagiri </option>
+                    <option value="Pune">Pune</option>
+                    <!-- <option value="Sindudurg">Sindudurg</option>
+                    <option value="Kolhapur">Kolhapur</option>
+                    <option value="Latur">Latur</option> -->
+                    <option value="All Regions">All Regions</option>
+                </select>
+            </div>
+
+            <div class="panel-button">
+                <div class="button" name="submit"><button class="panel-btn">Check</button></div>
+            </div>
+        </form>
+    </div>
+
+    <div id="copyright"> &copy; Copyright 2022 <strong> MyECF.com </strong> Version 0.0.1 </div>
+
+</body>
+
+</html>

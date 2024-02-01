@@ -1,0 +1,806 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyECF | Check</title>
+
+
+    <link rel="shortcut icon" href="{% static 'images/main-logo.png' %}" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+
+    <style>
+        /* CSS Reset  */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* font-family: 'Teko', sans-serif; */
+            font-family: 'Source Code Pro', monospace;
+            /* background-color: #9199a1; */
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            user-select: none;
+
+
+        }
+
+        #backgroundImage {
+            z-index: -4;
+            position: absolute;
+        }
+
+        #backgroundImage #bgimg {
+            width: 100%;
+            height: 67vw;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+        }
+
+        .header {
+            background-color: #2c3e50;
+            height: 4vw;
+        }
+
+        .header .left {
+            /* border: 2px solid red; */
+            position: absolute;
+            left: 2vw;
+            top: 0.3vw;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .header .left div {
+            line-height: 20px;
+            /* margin-top: 30px; */
+            font-size: 20px;
+            font-family: 'Teko', sans-serif;
+
+        }
+
+        .header .left img {
+            width: 7vw;
+            padding: 0vw 1vw;
+            transition: 1.6s;
+
+        }
+
+        .header .left img:hover {
+            transform: scale(1.06);
+
+        }
+
+        .header .mid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 98%;
+            height: 4vw;
+
+        }
+
+        .header .right {
+            position: absolute;
+            right: 7vw;
+            top: 0.6vw;
+            display: list-item;
+            list-style: none;
+            /* border: 2px solid yellow; */
+        }
+
+        .header .navbar {
+            display: inline-block;
+        }
+
+        .header .navbar li {
+            display: inline-block;
+            font-size: 2vw;
+            color: red;
+            transition: 1.6s;
+        }
+
+        .header .navbar li:hover {
+            transform: scale(1.08);
+        }
+
+        .header .navbar li a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            padding: 10px 40px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .header .navbar li a:hover,
+        .header .navbar li a:active {
+            color: rgb(202, 199, 199);
+        }
+
+        .header .right .btn {
+            font-family: 'Teko', sans-serif;
+            margin: 0px 9px;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            color: rgb(2, 2, 2);
+            padding: 2px 14px;
+            border-radius: 25px;
+            font-size: 25px;
+            border: none;
+            float: right;
+            cursor: pointer;
+            transition: 1.6s;
+        }
+
+        .header .right .btn:hover {
+            transform: scale(1.08);
+            background-color: rgb(156, 156, 156);
+        }
+
+
+        .header .right .versionInfo {
+            /* width: 161%; */
+            /* height: 100%; */
+            float: right;
+            z-index: 4;
+            background-color: #414d58;
+            border-radius: 0.8vw;
+            position: absolute;
+            left: -10vw;
+            right: -6vw;
+            top: 3.6vw;
+            padding: 0.4vw;
+            padding-left: 10px;
+            display: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+
+        .header .right:hover>.versionInfo {
+            display: block;
+        }
+
+        .header .right .versionInfo h4,
+        span {
+            font-size: 1vw;
+            color: white;
+
+        }
+
+        .header .right .versionInfo h4 {
+            font-weight: bolder;
+            margin-top: 20px;
+            background-color: #2c3e50;
+            padding-inline-start: 1vw;
+
+
+        }
+
+        .header .right .versionInfo span {
+            line-height: 2px;
+            /* padding-inline-start: 1vw; */
+
+        }
+
+
+        .showMainPanel {
+            /* border: 2px solid rgb(12, 12, 12); */
+            color: black;
+            margin: 30px auto;
+            padding-bottom: 400px;
+            width: 95%;
+            border-radius: 4px;
+            height: 30.8vw;
+            align-items: center;
+            background-color: white;
+            opacity: 0.95;
+            /* margin-bottom: 12vw; */
+        }
+
+        .showMainPanel #showCollege #seeMoreImages {
+            font-family: 'Teko', sans-serif;
+            margin: 0px 9px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(2, 2, 2);
+            padding: 2px 14px;
+            border: none;
+            border-radius: 2vw;
+            font-size: 1.4vw;
+            cursor: pointer;
+            width: 40%;
+        }
+
+        .showMainPanel #showCollege #showImage #seeMoreImages {
+            border: 2px solid rgb(156, 156, 156);
+        }
+
+        .header .right .btn:hover,
+        .showMainPanel #showCollege #seeMoreImages:hover {
+            background-color: rgb(207, 206, 206);
+        }
+
+
+
+
+        /* .showMainPanel #filter {
+            position: absolute;
+            right: 14vw;
+            top: 8vw;
+        } */
+
+
+        .showMainPanel .showSelection {
+            text-align: center;
+            display: grid;
+            margin-top: 10px;
+            grid-template-areas: "showSelectedCourse showSelectedRegion filter ";
+        }
+
+        .showMainPanel .showSelection #selectedRegion {
+            text-align: left;
+            margin-right: 45vw;
+            transition: 1.6s;
+        }
+
+
+        .showMainPanel .showSelection label {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .showMainPanel .showSelection input {
+            /* margin-left: 12px; */
+            margin-right: 20px;
+            margin-top: 12px;
+            text-align: center;
+            width: 30%;
+            height: 35px;
+
+        }
+
+        ::placeholder {
+            color: #2c3e50;
+        }
+
+
+
+        .showMainPanel .showSelection #filter {
+            /* border: 2px solid; */
+            margin-top: 1vw;
+            margin-left: -15vw;
+            height: 2.2vw;
+            width: 0;
+        }
+
+        .showMainPanel .showSelection #filter #filterLabel {
+            background-color: #495c6e;
+            border-radius: 2vw;
+            padding: 2px;
+            color: white;
+            margin-bottom: 2px;
+            font-size: 18px;
+        }
+
+        .showMainPanel .showSelection #filter svg {
+            margin-left: 4.2vw;
+            transition: 1.6s;
+        }
+
+        .showMainPanel .showSelection #filter svg:hover {
+            transform: scale(1.08);
+        }
+
+        .showMainPanel .showSelection #filter ul {
+            list-style: none;
+            position: absolute;
+            width: 14%;
+            top: 9.4vw;
+            display: none;
+        }
+
+        .showMainPanel .showSelection #filter:hover>ul {
+            display: block;
+        }
+
+        .showMainPanel .showSelection #filter ul li {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+            font-size: 1.4vw;
+            width: 75%;
+            position: relative;
+            display: block;
+            transition: 1.6s;
+        }
+
+        .showMainPanel .showSelection #filter ul li:hover {
+            transform: scale(1.08);
+            background-color: #172a3d;
+        }
+
+
+        .showMainPanel .showSelection #filter ul ul {
+            position: absolute;
+            top: 0px;
+            right: 124px;
+            width: 100%;
+            display: none;
+        }
+
+        .showMainPanel .showSelection #filter ul li:hover>ul {
+            display: block;
+        }
+
+
+        .showMainPanel .showSelection #filter ul ul li {
+            text-align: center;
+
+
+        }
+
+
+        .showMainPanel .showSelection #filter ul ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Roboto Mono', monospace;
+
+        }
+
+        .showMainPanel .showSelection #filter ul ul li a:hover {
+            color: #a7b2bd;
+
+        }
+
+        .showMainPanel .showSelection #filter ul ul li label {
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            padding: 0 26px;
+        }
+
+
+
+
+        .showMainPanel .showPanel {
+            /* border: 2px solid black; */
+            margin: 1vw;
+            margin-top: 2vw;
+            height: 795px;
+        }
+
+        .showMainPanel .showPanel #selectCollege,
+        .showMainPanel .showPanel #showCollege {
+            border: 2px solid black;
+            border-radius: 4px;
+            margin: 12px;
+            width: 61vw;
+            display: inline-block;
+            height: 49vw;
+            text-align: center;
+            font-size: 40px;
+            overflow: hidden;
+            overflow-y: scroll;
+            transition: 1.6s;
+
+
+        }
+
+        .showMainPanel .showPanel #selectCollege:hover,
+        .showMainPanel .showPanel #showCollege:hover {
+            transform: scale(1.02);
+
+
+        }
+
+        .showMainPanel .showPanel #selectCollege::-webkit-scrollbar,
+        .showMainPanel .showPanel #showCollege::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .showMainPanel .showPanel #selectCollege {
+            width: 26vw;
+        }
+
+        .showMainPanel .showPanel #selectCollege #collegeList {
+            margin-top: 2vw;
+            width: 100%;
+            height: 2vw;
+
+        }
+
+        .showMainPanel .showPanel #selectCollege label {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: bolder;
+            font-size: 30px;
+        }
+
+        .showMainPanel .showPanel #selectCollege a {
+            font-family: 'Roboto Mono', monospace;
+            text-decoration: none;
+        }
+
+        .showMainPanel .showPanel #selectCollege option {
+            margin: 1.6vw 0.9vw;
+            height: 2vw;
+            font-size: 1.2vw;
+            color: black;
+            font-weight: 400;
+            cursor: pointer;
+            font-family: 'Roboto Mono', monospace;
+            width: 20%;
+            /* overflow-wrap: break-word; */
+            transition: 1.2s;
+        }
+
+
+        .showMainPanel .showPanel #selectCollege option:hover {
+            font-family: 'Roboto Mono', monospace;
+            color: #2c3e50;
+            transform: scale(1.04);
+        }
+
+
+
+
+        .showMainPanel .showPanel #showCollege #showImage {
+            border: 2px solid rgb(156, 156, 156);
+            width: 55%;
+            height: 35%;
+            border-radius: 0.4vw;
+            margin: 2.4vw auto;
+            transition: 1.6s;
+
+        }
+
+        .showMainPanel .showPanel #showCollege #showImage:hover {
+            transform: scale(1.06);
+
+        }
+
+        .showMainPanel .showPanel #showCollege #showImage #image {
+            width: 99.9%;
+            height: 99.4%;
+            margin-top: 1px;
+            object-fit: cover;
+            cursor: grab;
+            border-radius: 0.3vw;
+        }
+
+        .showMainPanel .showPanel #showCollege h1 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .showMainPanel .showPanel #showCollege #collegeName {
+            text-align: center;
+            margin-top: 2vw;
+            margin-bottom: 2vw;
+            font-size: 2.2vw;
+            font-weight: bold;
+        }
+
+        .showMainPanel .showPanel #showCollege #collegeDetails {
+            position: relative;
+            margin: 1.4vw auto;
+            height: 120%;
+            width: 124%;
+            border: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        iframe {
+            align-items: center;
+            position: absolute;
+            border: none;
+            width: 85.9%;
+            height: 137%;
+            top: -16%;
+            left: -2%;
+            transform: translateY(114px);
+        
+        }
+
+
+
+
+
+
+        #feedback {
+            position: relative;
+            max-width: 63%;
+            padding: 2vw;
+            margin: auto;
+            top: 8vw;
+            margin-bottom: 4vw;
+            border-radius: 1vw;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition: 1.6s;
+            z-index: 4;
+        }
+
+        #feedback:hover {
+            transform: scale(1.06);
+        }
+
+        #userFeedback h1,
+        p {
+            text-align: center;
+            color: rgb(5, 5, 5);
+        }
+
+        #feedback h1 {
+            font-size: 35px;
+        }
+
+        #feedback #userFeedback input,
+        #feedback #userFeedback textarea {
+            width: 80%;
+            margin: 10px 0px;
+            padding: 8px;
+            font-size: 14px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+
+        #feedback #userFeedback textarea {
+            resize: none;
+        }
+
+        #userFeedback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* justify-content: center; */
+            margin-top: 10px;
+        }
+
+        #userFeedback #feedbackBtn {
+            display: grid;
+            width: 80%;
+            grid-template-areas: "feebackSubmit feebackReset";
+            justify-items: center;
+
+        }
+
+        .feedbackBtn {
+            border: none;
+            background-color: rgb(175, 175, 175);
+            color: #172a3d;
+            padding: 8px 12px;
+            font-style: 20px;
+            text-align: center;
+            border-radius: 4vw;
+            cursor: pointer;
+            width: 40%;
+            transition: 1.6s;
+        }
+
+        .feedbackBtn:hover {
+            background-color: #495c6e;
+            color: white;
+            transform: scale(1.06);
+
+        }
+
+        #copyright {
+            background-color: #bfdaf5;
+            color: black;
+            margin-top: 6rem;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            word-spacing: 3px;
+            position: absolute;
+            left: 0px;
+        }
+
+
+        #copyright strong {
+            color: royalblue;
+            font-weight: bolder;
+        }
+    </style>
+
+    <script>
+        function jframe(selected_option) {
+            var value = document.getElementById(selected_option).getAttribute("value")
+            var x = document.getElementById('iframe')
+            x.src = value
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+    <div id="backgroundImage">
+        <img id="bgimg" src="{% static '/images/mainbg.jpg' %}" alt="#">
+    </div>
+    <header class="header">
+        <!-- Left box for logo -->
+
+        <div class="left">
+            <img src="{%static 'images/main-logo.png'%}" alt="#">
+        </div>
+
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="home">Home</a></li>
+                <li><a href="#">Useful Links</a></li>
+                <li><a href="#">Review</a></li>
+                <li><a href="aboutUs">About Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn">Version</button>
+            <div class="versionInfo">
+                <h4>Version: 0.0.1</h4>
+                <span>Selecting the college & course is smooth and filters has been added to get your choice college
+                    easily</span>
+                <h4>Software use:</h4>
+                <span>Vs Code</span>
+                <h4>Language use:</h4>
+                <span>Frontend:- Html,Css <br>
+                    Backend:-Python (Django framework) <br>
+                    Database:- Xampp MySQL
+                </span>
+                <h4>Website Updates:</h4>
+                <span>These website get updated every 2 month</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="showMainPanel">
+        <!-- <label for="filter" id="filter">Filter</label> -->
+
+        <div class="showSelection">
+
+            <label for="Course" id="selectedCourse">Course:<input readonly selected disabled type="text"
+                    name="yourSelectedCourse" placeholder="{{coursename}}" id="yourSelectedCourse">
+            </label>
+
+            <label for="Region" id="selectedRegion">Region:<input readonly selected disabled type="text"
+                    name="yourSelectedRegion" placeholder="{{region}}" id="yourSelectedRegion">
+            </label>
+
+
+
+            <div id="filter"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                    class="bi bi-filter-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z" />
+                    <ul>
+                        <li id="filterLabel">filter</li>
+                        <li><a>Exam</a>
+                            <ul>
+                                <li>
+                                    <a href="cet"><label for="CET">CET</label></a>
+                                </li>
+                                <li>
+                                    <a href='jee'><label for="JEE">JEE</label></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a>Gender</a>
+                            <ul>
+                                <li>
+                                    <a href="female"><label for="female">Female</label></a>
+                                </li>
+                                <li>
+                                    <a href="male"><label for="male">Male</label></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a>Reservation</a>
+                            <ul>
+                                <li>
+                                    <a href="obc"><label for="OBC">OBC</label></a>
+                                </li>
+                                <li>
+                                    <a href="sc"><label for="SC">SC</label></a>
+                                </li>
+                                <li>
+                                    <a href="nt"><label for="NT">NT</label></a>
+                                </li>
+                                <li>
+                                    <a href="st"><label for="ST">ST</label></a>
+                                </li>
+                                <li>
+                                    <a href="open"><label for="OPEN">OPEN</label></a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </svg>
+            </div>
+        </div>
+
+        <div class="showPanel">
+            <div id="selectCollege">
+                <label for="selectCollege"> Select college</label>
+                <div id="collegeList">
+                    {% for name,link in collegename.items%}
+
+                    <p>
+                        <option id="{{forloop.counter}}" value="{{link}}" onclick="jframe('{{forloop.counter}}')">
+                            {{name}}</option>
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="showCollege">
+
+                <div id="showImage">
+                    <!-- Images -->
+                    <img id="image" src="{% static '/images/college.jpg' %}" alt="" srcset="">
+
+                </div>
+                <!-- <h1 id="collegeName">Gharda Institute of Technology</h1> -->
+
+
+                <div id="collegeDetails">
+                    <iframe id="iframe" src="">
+                        <!-- http://www.dtemaharashtra.gov.in/StaticPages/frmInstituteSummary.aspx?InstituteCode=3216 -->
+                    </iframe>
+                </div>
+
+
+                <!-- <div id="collegeLink">
+                    <label>To Know more about the College</label>
+                    <a href="http://git-india.edu.in/git/index.html" target="_blank">Open Link</a>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+    <div id="feedback">
+        <form id="userFeedback" action="userFeedback" method="post">
+            {% csrf_token %}
+            <h1>Feedback Form</h1>
+            <p>Please fill this form to give us feedback</p>
+            <input type="text" name="name" id="name" placeholder="Enter your Name" required>
+            <input type="phone" name="phone" id="phone" placeholder="Enter your Phone Number">
+            <input type="email" name="email" id="email" placeholder="Enter your Email">
+            <!-- <input type="date" name="date" id="date"> -->
+            <textarea name="desc" id="desc" cols="30" rows="15" placeholder="Enter Feedback here"></textarea>
+            <div id="feedbackBtn">
+                <button name="feebackSubmit" class="feedbackBtn">Submit</button>
+                <button name="feebackReset" class="feedbackBtn">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="copyright">&copy; Copyright 2022 <strong> MyECF.com </strong> Version 0.0.1</div>
+
+
+</body>
+
+</html>
